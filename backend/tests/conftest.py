@@ -1,10 +1,14 @@
 """conftest."""
+from sqlalchemy.sql.functions import user
 import pytest
-from api.domain.models.organization import OrganizationId, OrganizationName
-from api.domain.models.project import (ProjectDate, ProjectDescription, ProjectName, ProjectPeriod,
-                                       ProjectRequest)
-from api.infrastructure.db import entities, project_datasource
-from api.infrastructure.db.database import get_db
+
+from api.entities.user import User, UserEmail, UserRegister, UserId, UserName, UserPassword
+from api.entities.record import (Record, RecordId, CreateRecord, Happiness, Motivation, Workout, Helped, Carories, Steps, Meditation, Study, Work)
+from api.entities.general import CreatedAt
+
+from api.interfaces.db import db_models, record_db_handler, user_db_handler
+from api.interfaces.db.database import get_db
+
 from api.main import app
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -22,7 +26,7 @@ def fixture_test_session_local():
         "Test database already exists. Aborting tests."
 
     # Create test database and tables
-    entities.Base.metadata.create_all(engine)
+    db_models.Base.metadata.create_all(engine)
     session_local = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
     # Run the tests
@@ -35,9 +39,6 @@ def fixture_test_session_local():
 def temp_db(f):
     """Temp db."""
     def func(test_session_local, *args, **kwargs):
-        # テスト用のDBに接続するためのsessionmaker instanse
-        #  (SessionLocal) をfixtureから受け取る
-
         def override_get_db():
             try:
                 db = test_session_local()
@@ -47,12 +48,11 @@ def temp_db(f):
 
         init_test_db(test_session_local)
 
-        # fixtureから受け取るSessionLocalを使うようにget_dbを強制的に変更
         app.dependency_overrides[get_db] = override_get_db
 
         # Run tests
         f(*args, **kwargs)
-        # get_dbを元に戻す
+
         app.dependency_overrides[get_db] = get_db
 
     return func
@@ -61,14 +61,19 @@ def temp_db(f):
 def init_test_db(test_session_local):
     """Initialize DB."""
     with test_session_local() as db:
-        project_datasource.create_organization(
-            db=db, name=OrganizationName("株式会社○○"))
+        user_db_handler.create_user(
+            db=db, request=UserRegister(
+            username=UserName('test_user'),
+            email=UserEmail('test@gmail.com'),
+            password=UserPassword('testpassword'),
+            created_at=CreatedAt('2022-01-01')
+        ))
 
-        project_datasource.create_project(
+        record_db_handler.create_record(
             db=db,
-            organization_id=OrganizationId(1),
-            request=ProjectRequest(name=ProjectName("Hacarus社地盤検査"),
-                                   description=ProjectDescription("Hacarus社社屋建設PJ"),
-                                   period=ProjectPeriod(
-                                       start_date=ProjectDate(2021, 11, 17),
-                                       end_date=ProjectDate(2021, 11, 18))))
+            request=CreateRecord(
+                user_id=UserId(0),
+                created_at=CreatedAt('2022-01-01'), happiness=Happiness(5), motivation=Motivation(5),
+                workout=Workout('yes'), helped=Helped('yes'), carories=Carories(3000), steps=Steps(10000),
+                meditation=Meditation(120), study=Study(5), work=Work(5)
+            ))

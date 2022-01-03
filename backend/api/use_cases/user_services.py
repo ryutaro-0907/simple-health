@@ -4,7 +4,7 @@ from typing import List
 from sqlalchemy.orm import Session
 
 from ..entities.user import User, UserId, UserRegister
-from ..interfaces import user_db_handler
+from ..interfaces.db import user_db_handler
 
 def register_user(db: Session, request: UserRegister):
     return user_db_handler.create_user(

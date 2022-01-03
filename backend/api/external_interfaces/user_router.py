@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 
 from ..use_cases import user_services
 from ..entities.user import User, UserId, UserRegister
-from ..interfaces.database import get_db
+from ..interfaces.db.database import get_db
 
 router = APIRouter()
 

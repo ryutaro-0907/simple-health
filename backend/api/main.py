@@ -6,8 +6,8 @@ import sys
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .interfaces import db_models
-from .interfaces.database import engine
+from .interfaces.db import db_models
+from .interfaces.db.database import engine
 from .external_interfaces import user_router, record_router
 
 db_models.Base.metadata.create_all(bind=engine)
@@ -32,7 +32,7 @@ app.add_middleware(
 
 
 app.include_router(user_router.router, prefix="/api")
-# app.include_router(record_router.router, prefix="/api")
+app.include_router(record_router.router, prefix="/api")
 
 
 logger = logging.getLogger(__name__)
@@ -40,7 +40,4 @@ logger = logging.getLogger(__name__)
 sh = logging.StreamHandler(sys.stdout)
 sh.setLevel(logging.DEBUG)
 
-"""
-curl localhost:8000/api/users
-curl -X POST -H "Content-Type: application/json" -d '{"username":"test", "email":"test@gmail.com","password":"test"}' http://localhost:8000/api/users
-"""
+

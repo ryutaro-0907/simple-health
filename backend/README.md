@@ -13,18 +13,13 @@
 #### Interfaces
     Retrieve and store data from and to a number of sources (database, network devices, file system, 3rd parties, and so on.)
 
-    Define interfaces for the data that they need in order to apply some logic. One or more data providers will implement the interface, but the use case doesn’t know where the data is coming from
-
     Implement the interfaces defined by the use case
 
     the controller for a MVC
 
-
 #### External interfaces
     Isolated
     Use any package here
-
-
 
 ## Setup
 
@@ -62,6 +57,31 @@ We recommend installing Poetry using pip or Homebrew to global environment.
 
 If it works well, you can access http://localhost:8000/docs
 
-### Initialize development DB
+### Pytest
+    poetry run coverage run -m pytest
 
+### test with curl
+for users endpoint.
+    curl localhost:8000/api/users
+    curl -X POST -H "Content-Type: application/json" -d '{"username":"test", "email":"test@gmail.com","password":"test"}' http://localhost:8000/api/users
+
+for records endpoint
+    curl localhost:8000/api/records/1
+
+    curl -X POST -H "Content-Type: application/json" -d '
+                {
+                "user_id": 0,
+                "created_at": "string",
+                "happiness": 0,
+                "motivation": 0,
+                "workout": "string",
+                "helped": "string",
+                "carories": 0,
+                "steps": 0,
+                "meditation": 0,
+                "study": 0,
+                "work": 0
+                }' http://localhost:8000/api/records
+
+### Initialize development DB
     python ./init_dev_db.py

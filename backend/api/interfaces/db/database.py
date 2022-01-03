@@ -12,7 +12,7 @@ sql_type = os.environ.get('DB_type', 'type')
 
 # SQLALCHEMY_DATABASE_URL = f"postgresql://{db_user}:{db_pass}@host.docker.internal:5432/app_db"
 
-SQLITE_PATH = 'sqlite://///Users/ryutaro/Desktop/code/work/Health-care-app/backend/api/healthcare.db'
+SQLITE_PATH = 'sqlite://///Users/ryutaro/Desktop/code/work/simple-health/backend/api/healthcare.db'
 
 engine = create_engine(
     SQLITE_PATH
