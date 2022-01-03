@@ -1,4 +1,4 @@
-# HACARUS Underground
+# Simple Health
 
 ## Setup for development
 
