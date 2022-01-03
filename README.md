@@ -12,12 +12,6 @@
 
 We recommend installing pre-commit, Poetry using pip or Homebrew to global environment.
 
-### Clone project
-```bash
-$ git clone git@gitlab.com:hacarus/external/gpr-app-development/cloud-app/app-development.git
-$ cd app-development
-```
-
 ### Prepare .envrc via direnv
 1. Please install [direnv](https://github.com/direnv/direnv) before setting.
 2. Edit .envrc with `direnv edit .` command.
@@ -28,7 +22,6 @@ export NGINX_PORT=80
 export DOMAIN=localhost
 export API_URL=api
 export ALLOW_ORIGIN=http://lvh.me:3000 # This setting is optional.
-export GOOGLE_API_KEY='Add GOOGLE API KEY provided by manager'
 export LOCAL_DATA_DIR='/local/path/to/data/dir'
 export FILE_STORAGE=S3 or Local
 export AWS_ACCESS_KEY_ID='AWS ACCESS KEY'
