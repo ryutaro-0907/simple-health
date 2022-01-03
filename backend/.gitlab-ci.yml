@@ -1,0 +1,21 @@
+# Change project name variables, change MODULE_DIR to "app" or "notebooks"
+variables:
+    PROJECT_NAME: projectname
+    MODULE_DIR: app
+    REPOSITORY_URL: $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/<projectname>
+
+stages:
+    - build
+    - test
+    - deploy
+
+include:
+    - local: /.gitlab/ci/example.gitlab-ci.yml
+    - local: /.gitlab/ci/artifacts.gitlab-ci.yml
+#    - local: /.gitlab/ci/sphinx.gitlab-ci.yml
+#    - local: /.gitlab/ci/pylint.gitlab-ci.yml
+#    - local: /.gitlab/ci/unittest.gitlab-ci.yml
+#    - local: /.gitlab/ci/mypy.gitlab-ci.yml
+#    - local: /.gitlab/ci/pages.gitlab-ci.yml
+#    - local: /.gitlab/ci/ecr_upload.gitlab-ci.yml
+#    - local: /.gitlab/ci/deploy_service.gitlab-ci.yml
