@@ -1,0 +1,6 @@
+[flake8]
+max-line-length = 120
+filename = *.py
+max-complexity = 10
+exclude = .venv,venv,tests/__init__.py
+ignore = D107, D401, D104, W293, C901

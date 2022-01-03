@@ -1,0 +1,15 @@
+FROM node:16.13.0-alpine
+
+ENV LANG=C.UTF-8 TZ=Asia/Tokyo
+
+WORKDIR /app
+
+RUN apk update
+RUN if [ -f package.json ]; then npm install; fi
+
+ENV HOST 0.0.0.0
+
+EXPOSE 3000
+
+ENV SCRIPT="debug"
+ENTRYPOINT npm run ${SCRIPT}

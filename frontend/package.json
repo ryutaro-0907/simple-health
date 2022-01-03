@@ -1,0 +1,29 @@
+{
+  "name": "simple-health",
+  "version": "1.0.0",
+  "private": false,
+  "scripts": {
+    "dev": "HOST=0.0.0.0 PORT=3000 nuxt",
+    "debug": "node --inspect-brk=0.0.0.0:9229 node_modules/nuxt/bin/nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/composition-api": "^0.30.0",
+    "@nuxtjs/i18n": "^7.2.0",
+    "core-js": "^3.15.1",
+    "dayjs": "^1.10.7",
+    "gmap-vue": "^2.0.2",
+    "nuxt": "^2.15.3",
+    "nuxt-i18n-composable": "^0.1.1",
+    "vee-validate": "^3.4.14"
+  },
+  "devDependencies": {
+    "@nuxt/types": "^2.15.7",
+    "@nuxt/typescript-build": "^2.1.0",
+    "@nuxtjs/vuetify": "^1.12.2",
+    "postcss": "^8.3.5"
+  }
+}
