@@ -63,7 +63,10 @@ If it works well, you can access http://localhost:8000/docs
 ### test with curl
 for users endpoint.
     curl localhost:8000/api/users
-    curl -X POST -H "Content-Type: application/json" -d '{"username":"test", "email":"test@gmail.com","password":"test"}' http://localhost:8000/api/users
+
+    curl -X POST -H "Content-Type: application/json" -d '{"username":"test", "email":"test@gmail.com","password":"test"}' http://localhost:8000/api/users/signup
+
+    curl -X POST -H "Content-Type: application/json" -d '{"email":"test@gmail.com","password":"test"}' http://localhost:8000/api/users/signin
 
 for records endpoint
     curl localhost:8000/api/records/1

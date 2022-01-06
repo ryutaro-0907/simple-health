@@ -17,6 +17,9 @@ app = FastAPI()
 origins = [
     "http://localhost",
     "http://localhost:3000",
+    "http://192.168.0.21:3000",
+    "http://0.0.0.0:8000",
+
 ]
 
 if 'ALLOW_ORIGIN' in os.environ:

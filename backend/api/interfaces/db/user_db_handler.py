@@ -4,7 +4,7 @@ from typing import List
 
 from sqlalchemy.orm import Session
 
-from ...entities.user import User, UserEmail, UserRegister, UserId, UserName, UserPassword
+from ...entities.user import User, UserEmail, UserRegister, UserId, UserName, UserPassword, UserSignIn
 from ...entities.general import CreatedAt
 from .db_models import UserModel
 
@@ -14,7 +14,6 @@ def get_all_user(db: Session) -> List[User]:
 
     users = list(map(UserModel.to_model, db_users))
     return users
-
 
 def get_user_by_id(db: Session, _id: UserId) -> User:
     user = db.query(UserModel).filter(UserModel.id == _id).first()
@@ -33,3 +32,8 @@ def create_user(db: Session, request: UserRegister):
     db.refresh(user)
     return user.to_model()
 
+
+def user_signin(db: Session, request: UserSignIn) -> User:
+    """ sign in"""
+    user = db.query(UserModel).filter(UserModel.email == request.email and UserModel.password == request.password).first()
+    return user.to_model()

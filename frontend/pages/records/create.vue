@@ -269,7 +269,7 @@ export default defineComponent({
       {
         text: i18n.t('names.createRecord'),
         disabled: true,
-        href: '/create_project',
+        href: '/create_record',
       },
     ]
 
@@ -320,9 +320,10 @@ export default defineComponent({
     const adjustedDate = new Date(date.getTime() - (offset*60*1000))
     const today = adjustedDate.toISOString().split('T')[0]
 
+    const user_id = '1'
     const submit = () => {
       const createRecord: ICreateRecord = {
-        date: today,
+        user_id: user_id,
         happiness: formData.happiness,
         motivation: formData.motivation,
         workout: formData.workout,
@@ -333,7 +334,6 @@ export default defineComponent({
         study: formData.study,
         work: formData.work
       }
-      console.log('today:',createRecord.date)
       console.log('happiness', createRecord.happiness)
 
       api.createRecord(createRecord)

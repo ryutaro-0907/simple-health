@@ -39,6 +39,9 @@ class UserRegister(BaseModel):
     email: UserEmail
     password: UserPassword
 
+class UserSignIn(BaseModel):
+    email: UserEmail
+    password: UserPassword
 class User(BaseModel):
     """User (ユーザー)."""
 

@@ -4,17 +4,17 @@
       </bread-clumbs>
 
     <section>
-      <h1>Index page</h1>
        <v-container fluid>
         <v-container v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">
           <div class="text-h6">{{ t('names.recordList') }}</div>
           <v-row>
-            <v-btn class="ml-auto" depressed right dark small color="#1F787A" @click="toCreateProject()">
+            <v-btn class="ml-auto" depressed right dark small color="#1F787A" @click="toCreateRecord()">
               {{ t('names.createRecord') }}
             </v-btn>
           </v-row>
         </v-container>
        </v-container>
+
     </section>
   </div>
 </template>
@@ -38,15 +38,6 @@ import { localize } from "vee-validate";
 import { useI18n } from "nuxt-i18n-composable";
 import BreadClumbs from "../components/BreadClumbs.vue";
 
-interface TableData{
-  id: number,
-  projectName: string,
-  description: string,
-  number_of_areas: number,
-  number_of_inspections: number,
-  start_date: string,
-  end_date: string
-}
 
 export default defineComponent({
   components: { BreadClumbs },
@@ -79,23 +70,13 @@ export default defineComponent({
         action: deleteProject
       }
     ]
-    const data = reactive({
-      tableData: [] as TableData[]
-    });
 
-    const toCreateProject = () => {
+
+    const toCreateRecord = () => {
       router.push("/records/create");
     }
 
-    const toReport = () => {
-      router.push("/reports");
-    }
 
-    // const toProjectDetail = (id: number) => `/projects/${id}`
-
-    const toProjectDetail = (data: TableData) => {
-      router.push(`/projects/${data.id}`)
-    }
 
     // onMounted(() => {
     //   api.allProjectsWithInspections().then(response => {
@@ -128,10 +109,8 @@ export default defineComponent({
     localize(i18n.locale.value);
 
     return {
-      data,
-      toCreateProject,
-      toProjectDetail,
-      toReport,
+      // data,
+      toCreateRecord,
       breadClumbs,
       // headers,
       options,
