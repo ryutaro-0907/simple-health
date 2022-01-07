@@ -27,7 +27,7 @@
         rules="required"
       >
         <v-select
-          v-model="formDatamotivation"
+          v-model="formData.motivation"
           :items="options.choices"
           :error-messages="errors"
           label="How motivated"
@@ -202,7 +202,6 @@ import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import BreadClumbs from "../../components/BreadClumbs.vue";
 
 type FormData = {
-  date: string,
   happiness:string,
   motivation:string,
   workout: string,
@@ -274,7 +273,6 @@ export default defineComponent({
     ]
 
     const formData = reactive<FormData>({
-      date: '',
       happiness: '',
       motivation: '',
       workout: '',
@@ -320,7 +318,7 @@ export default defineComponent({
     const adjustedDate = new Date(date.getTime() - (offset*60*1000))
     const today = adjustedDate.toISOString().split('T')[0]
 
-    const user_id = '1'
+    const user_id = 0
     const submit = () => {
       const createRecord: ICreateRecord = {
         user_id: user_id,
@@ -334,8 +332,8 @@ export default defineComponent({
         study: formData.study,
         work: formData.work
       }
-      console.log('happiness', createRecord.happiness)
-
+      console.log('creating record.')
+      console.log('record=', createRecord)
       api.createRecord(createRecord)
         .then(response => router.push("/"))
         .catch(e => {

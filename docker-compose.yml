@@ -9,8 +9,8 @@ services:
       - ./initdb.d/init.sql:/data/application/init.sql
       - .db_data:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=${HRM_DB_PASS}
-      - TZ=Asia/Tokyo
+      - MYSQL_ROOT_PASSWORD=${DB_PASS}
+      - TZ=/Canada/Central
     networks:
       hrm_net:
         ipv4_address: 192.168.11.2
@@ -18,8 +18,8 @@ services:
       - "20601:3306"
 
   frontend:
-    image: hrm_frontend
-    container_name: hrm-frontend
+    image: frontend
+    container_name: frontend
     restart: always
     networks:
       hrm_net:
@@ -28,8 +28,8 @@ services:
       - "20603:8080"
 
   backend:
-    image: hrm_backend
-    container_name: hrm-backend
+    image: backend
+    container_name: backend
     restart: always
     networks:
       hrm_net:

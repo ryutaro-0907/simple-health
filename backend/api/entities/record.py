@@ -6,25 +6,25 @@ from .user import UserId
 from .general import CreatedAt
 
 
-class RecordId(int):
+class RecordId(str):
     """Record id."""
 
-    def __new__(cls, value: int):
+    def __new__(cls, value: str):
         """new."""
-        return int.__new__(cls, value)
-class Happiness(int):
+        return str.__new__(cls, value)
+class Happiness(str):
     """Record happiness."""
 
-    def __new__(cls, value: int):
+    def __new__(cls, value: str):
         """new."""
-        return int.__new__(cls, value)
+        return str.__new__(cls, value)
 
-class Motivation(int):
+class Motivation(str):
     """Record motivation."""
 
-    def __new__(cls, value: int):
+    def __new__(cls, value: str):
         """new."""
-        return int.__new__(cls, value)
+        return str.__new__(cls, value)
 
 class Workout(str):
     """Record workout."""
@@ -40,40 +40,40 @@ class Helped(str):
         """new."""
         return str.__new__(cls, value)
 
-class Carories(int):
+class Carories(str):
     """Record carories."""
 
-    def __new__(cls, value: int):
+    def __new__(cls, value: str):
         """new."""
-        return int.__new__(cls, value)
+        return str.__new__(cls, value)
 
-class Steps(int):
+class Steps(str):
     """Record steps."""
 
-    def __new__(cls, value: int):
+    def __new__(cls, value: str):
         """new."""
-        return int.__new__(cls, value)
+        return str.__new__(cls, value)
 
-class Meditation(int):
+class Meditation(str):
     """Record meditation."""
 
-    def __new__(cls, value: int):
+    def __new__(cls, value: str):
         """new."""
-        return int.__new__(cls, value)
+        return str.__new__(cls, value)
 
-class Study(int):
+class Study(str):
     """Record study."""
 
-    def __new__(cls, value: int):
+    def __new__(cls, value: str):
         """new."""
-        return int.__new__(cls, value)
+        return str.__new__(cls, value)
 
-class Work(int):
+class Work(str):
     """Record work."""
 
-    def __new__(cls, value: int):
+    def __new__(cls, value: str):
         """new."""
-        return int.__new__(cls, value)
+        return str.__new__(cls, value)
 
 class CreateRecord(BaseModel):
     """Record class for post."""

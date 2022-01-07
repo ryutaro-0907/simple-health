@@ -21,17 +21,17 @@ def get_records_by_user(db: Session, user_id: UserId) -> List[Record]:
 def create_record(db: Session, request: CreateRecord):
     """Create Record."""
     record = RecordModel(
-		user_id = request.user_id,
-        created_at = datetime.now(),
-        happiness=request.happiness,
-        motivation=request.motivation,
-        workout=request.workout,
-        helped=request.helped,
-        carories=request.carories,
-        steps=request.steps,
-        meditation=request.meditation,
-        study=request.study,
-		work=request.work
+		    user_id = int(request.user_id),
+        created_at = str(datetime.now()),
+        happiness= int(request.happiness),
+        motivation= int(request.motivation),
+        workout= str(request.workout),
+        helped= str(request.helped),
+        carories= int(request.carories),
+        steps= int(request.steps),
+        meditation= int(request.meditation),
+        study= int(request.study),
+		    work= int(request.work)
     )
     db.add(record)
     db.commit()

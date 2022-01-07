@@ -8,5 +8,5 @@ class Settings(BaseSettings):
     file_storage: str
     aws_access_key_id: str
     aws_secret_access_key: str
-    aws_default_region = ''
-    bucket_name = ''
+    aws_default_region: str = ''
+    bucket_name: str = ''

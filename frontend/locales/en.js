@@ -2,7 +2,17 @@ export default {
   names: {
     id: 'ID',
     recordList: 'Records',
-    createRecord: 'create record'
+    createRecord: 'create record',
+    created_at: 'created at',
+    happiness: 'Happiness',
+    motivation: 'Motivatoin',
+    workout: 'Workout',
+    helped: 'Helped Other',
+    carories: 'Carories',
+    steps: 'Steps',
+    meditation: 'Meditation (min)',
+    study: 'Study hours',
+    work: 'Work hours'
 
   },
   messages: {

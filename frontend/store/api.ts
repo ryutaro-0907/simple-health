@@ -21,6 +21,6 @@ export const api = {
   },
   async signIn(data: SignIn) {
     return axios.post('/users/signin', data)
-  }
+  },
 
 }

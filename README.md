@@ -36,8 +36,8 @@ $ pre-commit install
 ### Setup venv
 ```bash
 $ docker-compose build
-$ docker-compose run --rm --entrypoint "poetry install" underground-back
-$ docker-compose run --rm --entrypoint "npm install" underground-front
+$ docker-compose run --rm --entrypoint "poetry install" simple-health-back
+$ docker-compose run --rm --entrypoint "npm install" simple-health-front
 ```
 
 ### run for development

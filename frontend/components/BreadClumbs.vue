@@ -31,10 +31,4 @@ export default defineComponent({
   padding: 0px;
 }
 
-.v-divider {
-  /* margin-right: calc(50% - 50vw);
-  margin-left: calc(50% - 50vw); */
-  /* margin-left: -20px;
-  margin-right: -20px; */
-}
 </style>

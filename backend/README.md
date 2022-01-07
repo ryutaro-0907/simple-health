@@ -33,7 +33,7 @@ We recommend installing Poetry using pip or Homebrew to global environment.
 ### Setup venv
 
     docker-compose build
-    docker-compose run --rm --entrypoint "poetry install" underground-back
+    docker-compose run --rm --entrypoint "poetry install" simple-health-back
 
 ## Development
 
@@ -42,14 +42,14 @@ We recommend installing Poetry using pip or Homebrew to global environment.
     api
     |-- __init__.py
     |-- main.py
-    |-- crud     # DB operations
-    |-- models   # Class definition for domain models
-    |-- routers  # Path definition
-    `-- schemas  # Class definition for HTTP request / response.
+    |-- entities
+    |-- usecases
+    |-- interfaces
+    `-- external_interfaces
 
 ### add new dependencies
 
-    docker-compose run --rm --entrypoint "poetry add <new package>" underground-back
+    docker-compose run --rm --entrypoint "poetry add <new package>" simplehealth-back
 
 ### run API
 
@@ -86,5 +86,3 @@ for records endpoint
                 "work": 0
                 }' http://localhost:8000/api/records
 
-### Initialize development DB
-    python ./init_dev_db.py

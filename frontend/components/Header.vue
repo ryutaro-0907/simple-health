@@ -6,10 +6,10 @@
       dark
     >
       <div @click="router.push('/')" class="to-home">
-        <img class="logo" src="/Hacarus_Logo.png" width="28" height="28">
+        <img class="logo" src="logo.png" width="28" height="28">
         <v-toolbar-title>
           <span>
-            Re. 
+            Re.
           </span>
           <span style="font-size:14px">
             simple Health

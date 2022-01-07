@@ -13,6 +13,20 @@
             </v-btn>
           </v-row>
         </v-container>
+          <v-data-table
+            :headers="headers"
+            :items="data.records"
+            class="elevation-1"
+          >
+            <!-- <template v-slot:item.calories="{ item }">
+              <v-chip
+                :color="getColor(item.calories)"
+                dark
+              >
+                {{ item.calories }}
+              </v-chip>
+            </template> -->
+          </v-data-table>
        </v-container>
 
     </section>
@@ -37,6 +51,7 @@ import {defineComponent, onMounted, reactive, useRouter} from "@nuxtjs/compositi
 import { localize } from "vee-validate";
 import { useI18n } from "nuxt-i18n-composable";
 import BreadClumbs from "../components/BreadClumbs.vue";
+import { IRecord } from "~/interfaces/record"
 
 
 export default defineComponent({
@@ -71,48 +86,59 @@ export default defineComponent({
       }
     ]
 
-
     const toCreateRecord = () => {
       router.push("/records/create");
     }
 
+    const data = reactive({
+      records: [] as IRecord[]
+    });
 
+    const user_id = 0
 
-    // onMounted(() => {
-    //   api.allProjectsWithInspections().then(response => {
-    //     response.data.forEach((value) => {
-    //       data.tableData.push({
-    //         id: value.project.id,
-    //         projectName: value.project.name,
-    //         description: value.project.description,
-    //         number_of_areas: value.inspections.number_of_areas,
-    //         number_of_inspections: value.inspections.number_of_inspections,
-    //         start_date: value.project.period.start_date,
-    //         end_date: value.project.period.end_date
-    //   })
-    //   console.log(data.tableData)
-    // })
-    //   }).catch(e => console.log(e));
-    // })
+    onMounted(() => {
+      api.getRecordsByUser(user_id).then(response => {
+        response.data.forEach((value) => {
+          data.records.push({
+            record_id: value.record_id,
+            user_id: value.user_id,
+            created_at: value.created_at,
+            happiness: value.happiness,
+            motivation: value.motivation,
+            workout: value.workout,
+            helped: value.helped,
+            carories: value.carories,
+            steps: value.steps,
+            meditation: value.meditation,
+            study: value.study,
+            work: value.work
+      })
+      console.log(data.records)
+    })
+      }).catch(e => console.log(e));
+    })
 
-    // const headers = [
-    //       {text: i18n.t('names.projectName'), value: 'projectName'},
-    //       {text: i18n.t('names.projectDescription'), value: 'description'},
-    //       {text: i18n.t('names.numberOfInspectionAreas'), value: 'number_of_areas'},
-    //       {text: i18n.t('names.numberOfInspections'), value: 'number_of_inspections'},
-    //       {text: i18n.t('names.startDate'), value: 'start_date'},
-    //       {text: i18n.t('names.endDate'), value: 'end_date'},
-    //       {text: '', value: 'controls', sortable: false }
-    // ]
+    const headers = [
+          {text: i18n.t('names.created_at'), value: 'created_at'},
+          {text: i18n.t('names.happiness'), value: 'happiness'},
+          {text: i18n.t('names.motivation'), value: 'motivation'},
+          {text: i18n.t('names.workout'), value: 'workout'},
+          {text: i18n.t('names.helped'), value: 'helped'},
+          {text: i18n.t('names.steps'), value: 'steps'},
+          {text: i18n.t('names.meditation'), value: 'meditation'},
+          {text: i18n.t('names.study'), value: 'study'},
+          {text: i18n.t('names.work'), value: 'work'},
 
+          {text: '', value: 'controls', sortable: false }
+    ]
 
     localize(i18n.locale.value);
 
     return {
-      // data,
+      data,
       toCreateRecord,
       breadClumbs,
-      // headers,
+      headers,
       options,
       ...useI18n()
     }

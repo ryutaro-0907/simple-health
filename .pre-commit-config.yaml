@@ -1,11 +1,5 @@
 repos:
-#- repo: https://github.com/pre-commit/mirrors-yapf
-#  rev: ''  # Use the sha / tag you want to point at
-#  hooks:
-#    - id: yapf
-#      args:
-#        - --style blank_line_before_nested_class_or_def=True
-
+  
 - repo: https://github.com/pre-commit/mirrors-isort
   rev: 'v5.9.3'  # Use the revision sha / tag you want to point at
   hooks:
@@ -33,26 +27,3 @@ repos:
     - --django
   - id: requirements-txt-fixer
 
-# - repo: https://github.com/PyCQA/pylint
-#   rev: ''  # Use the revision sha / tag you want to point at
-#   hooks:
-#   - id: pylint
-
-# NOTE
-# Uncomment this when you have the full setup already
-#- repo: local
-#  hooks:
-#  - id: pytest
-#    name: Running PyTest with coverage
-#    entry: poetry run coverage run -m pytest
-#    language: system
-#    always_run: true
-#    pass_filenames: false
-#  - id: coverage
-#    name: Running coverage summary
-#    entry: poetry run coverage report -m
-#    types: [python]
-#    language: system
-#    always_run: true
-#    verbose: true
-#    pass_filenames: false

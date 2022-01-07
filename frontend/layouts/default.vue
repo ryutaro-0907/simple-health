@@ -23,7 +23,7 @@ body {
 }
 
 .v-application {
-  background: #e8ebeb;
+  background: #d5fafa;
 }
 
 .main-board{
@@ -31,8 +31,8 @@ body {
   margin-top: 26px;
   margin-bottom: 26px;
   padding: 20px;
-  background: white;
+  background: rgb(226, 224, 224);
   height: 100%;
-  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, .2);
+  box-shadow: 0 10px 20px 0 rgba(2, 2, 2, 0.2);
 }
 </style>
