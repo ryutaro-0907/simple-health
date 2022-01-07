@@ -1,0 +1,47 @@
+version: '3'
+services:
+  db:
+    image: mysql:8.0
+    container_name: hrm-mysql
+    restart: always
+    command: --init-file /data/application/init.sql
+    volumes:
+      - ./initdb.d/init.sql:/data/application/init.sql
+      - .db_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASS}
+      - TZ=/Canada/Central
+    networks:
+      hrm_net:
+        ipv4_address: 192.168.11.2
+    ports:
+      - "20601:3306"
+
+  frontend:
+    image: frontend
+    container_name: frontend
+    restart: always
+    networks:
+      hrm_net:
+        ipv4_address: 192.168.11.3
+    ports:
+      - "20603:8080"
+
+  backend:
+    image: backend
+    container_name: backend
+    restart: always
+    networks:
+      hrm_net:
+        ipv4_address: 192.168.11.4
+    ports:
+      - "20602:8000"
+    volumes:
+      - .logs:/app/.logs
+
+networks:
+  hrm_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.11.00/24

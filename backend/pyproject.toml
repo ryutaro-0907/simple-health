@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "simple-health-back"
+version = "0.1.0"
+description = ""
+authors = ["ryutaro.furutani"]
+
+[tool.poetry.dependencies]
+python = "^3.10,<3.11"
+fastapi = "^0.70.0"
+uvicorn = {extras = ["standard"], version = "^0.15.0"}
+sqlalchemy = "^1.4.27"
+SQLAlchemy-Utils = "^0.37.9"
+requests = "^2.26.0"
+python-multipart = "^0.0.5"
+boto3 = "^1.20.23"
+python-dotenv = "^0.19.2"
+psycopg2-binary = "^2.9.2"
+Pillow = "^8.4.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+pytest-cov = "^3.0.0"
+
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
