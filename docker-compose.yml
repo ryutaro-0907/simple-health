@@ -2,7 +2,7 @@ version: '3'
 services:
   db:
     image: mysql:8.0
-    container_name: hrm-mysql
+    container_name: mysql
     restart: always
     command: --init-file /data/application/init.sql
     volumes:
@@ -12,7 +12,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${DB_PASS}
       - TZ=/Canada/Central
     networks:
-      hrm_net:
+      net:
         ipv4_address: 192.168.11.2
     ports:
       - "20601:3306"
